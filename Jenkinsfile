@@ -13,8 +13,17 @@ pipeline {
      stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t akshu20791/simplilearn:v1 .'
+                    sh 'docker build -t simplilearn:v1 .'
                     sh 'docker images'
+                }
+            }
+        }
+      stage('Deploy') {
+            steps {
+               script {
+                     sh 'sudo docker rm -f My-first-containe221 || true'
+                     sh 'docker run -dt -p 8081:80 My-first-containe221 simplilearn:v1'
+                  
                 }
             }
         }
