@@ -5,29 +5,17 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Build Docker image
-                    docker.build("my-python-app")
+                   
                 }
             }
         }
 
-        stage('Test') {
-            steps {
-                script {
-                    // Run tests
-                    docker.image('my-python-app').inside {
-                        sh 'python application.py 5 7'
-                    }
+     stage('Build docker image'){
+            steps{
+                script{
+                    sh 'docker build -t akshu20791/simplilearn:v1 .'
+                    sh 'docker images'
                 }
             }
         }
-    }
-
-    post {
-        always {
-            // Clean up Docker images
-            cleanWs()
-            docker.image("my-python-app").remove()
-        }
-    }
 }
