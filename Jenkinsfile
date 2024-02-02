@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('checkout') {
             steps {
                 script {
                     git url: 'https://github.com/akshu20791/python-add', branch: 'master'
@@ -18,4 +18,5 @@ pipeline {
                 }
             }
         }
+    }
 }
